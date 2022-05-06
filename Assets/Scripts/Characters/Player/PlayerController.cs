@@ -13,20 +13,26 @@ public class PlayerController : MonoBehaviour
 
     PlayerGroundDetector groundDetector;
 
+    PlayerWallDetector wallDetector;
+
     public float MoveSpeed => Mathf.Abs(rigidBody.velocity.x);
 
     public float YSpeed => Mathf.Abs(rigidBody.velocity.y);
 
     [SerializeField] public int JumpTimes = 2;
     public int JumpCount;
+    
 
 
    
 
     [SerializeField] public bool IsGrounded => groundDetector.IsGrounded;
+    [SerializeField] public bool IsWalled => wallDetector.IsWalled;
     
     //Y轴速度小于0并且未着地说明在掉落
-    public bool IsFalling => rigidBody.velocity.y < 0f && !IsGrounded;
+    public bool IsFalling => rigidBody.velocity.y < 0f;
+
+    //public bool IsFalling => rigidBody.velocity.y <= 0f;
 
     public bool IsAirJump => input.Jump && JumpCount >= 1;
 
@@ -38,6 +44,7 @@ public class PlayerController : MonoBehaviour
        input = GetComponent<PlayerInput>();
        rigidBody = GetComponent<Rigidbody>();
        groundDetector = GetComponentInChildren<PlayerGroundDetector>();
+       wallDetector = GetComponentInChildren<PlayerWallDetector>();
 
        JumpCount = JumpTimes;
    }
@@ -58,11 +65,14 @@ public class PlayerController : MonoBehaviour
 
    }
 
-//    public void Jump(){
-//        if(input.Jump && JumpCount >= 1){
-//            S
-//        }
-//    }
+   public void YAxisSpeed(float sensitive, float deltaTime){
+       //Unity重力为-9.81
+       
+   // rigidBody.velocity += (Vector3.up + new Vector3(rigidBody.velocity.x, 0, 0) )* Physics.gravity.y * (sensitive -1) * deltaTime;
+     rigidBody.velocity += (Vector3.up  )* Physics.gravity.y * (sensitive -1) * deltaTime;
+
+   }
+
 
    public void ResetJumpCount(){
        JumpCount = JumpTimes;

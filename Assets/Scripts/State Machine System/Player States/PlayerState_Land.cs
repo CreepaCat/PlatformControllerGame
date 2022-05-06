@@ -22,5 +22,12 @@ public class PlayerState_Land : PlayerState
         }
         //着陆刹车
         currentSpeedX = Mathf.MoveTowards(currentSpeedX, 0 , deceleration * Time.deltaTime);
+       // currentSpeedX = 0f;
+    }
+
+    public override void PhysicUpdate()
+    {
+       // player.Move(currentSpeedX);
+       player.SetVelocityX(currentSpeedX);
     }
 }

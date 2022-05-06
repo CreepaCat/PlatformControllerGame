@@ -345,6 +345,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/Characters/Player/PlayerController.cs"
 "Assets/Scripts/Characters/Player/PlayerGroundDetector.cs"
+"Assets/Scripts/Characters/Player/PlayerWallDetector.cs"
 "Assets/Scripts/Input/PlayerInput.cs"
 "Assets/Scripts/Input/PlayerInputActions.cs"
 "Assets/Scripts/Platform/Pickups.cs"
@@ -357,6 +358,8 @@
 "Assets/Scripts/State Machine System/Player States/PlayerState_JumpUp.cs"
 "Assets/Scripts/State Machine System/Player States/PlayerState_Land.cs"
 "Assets/Scripts/State Machine System/Player States/PlayerState_Run.cs"
+"Assets/Scripts/UIFrame/Panel/Base/BasePanel.cs"
+"Assets/Scripts/UIFrame/Panel/Base/UIType.cs"
 -langversion:9.0
 
 /deterministic

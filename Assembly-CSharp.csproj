@@ -48,8 +48,11 @@
      <Compile Include="Assets\Scripts\State Machine System\Player States\PlayerState_Land.cs" />
      <Compile Include="Assets\Scripts\State Machine System\Player States\PlayerState_Idle.cs" />
      <Compile Include="Assets\Scripts\State Machine System\Player States\PlayerStateMachine.cs" />
+     <Compile Include="Assets\Scripts\Characters\Player\PlayerWallDetector.cs" />
      <Compile Include="Assets\Scripts\State Machine System\Player States\PlayerState_JumpUp.cs" />
      <Compile Include="Assets\Scripts\Input\PlayerInput.cs" />
+     <Compile Include="Assets\Scripts\UIFrame\Panel\Base\UIType.cs" />
+     <Compile Include="Assets\Scripts\UIFrame\Panel\Base\BasePanel.cs" />
      <None Include="Assets\Asset Packages\uchwch\Toon\Shader\Toon_DoubleShadeWithFeather_Mobile_TransClipping_StencilMask.shader" />
      <None Include="Assets\Asset Packages\uchwch\Toon\Shader\Toon_ShadingGradeMap_Mobile_StencilMask.shader" />
      <None Include="Assets\Asset Packages\uchwch\Toon\Shader\Tess\Toon_DoubleShadeWithFeather_Tess_Light_StencilMask.shader" />

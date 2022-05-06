@@ -13,6 +13,8 @@ public class PlayerInput : MonoBehaviour
     public bool Jump => playerInputActions.GamePlay.Jump.WasPressedThisFrame();
     public  bool StopJump => playerInputActions.GamePlay.Jump.WasReleasedThisFrame();
 
+    public bool JumpHold => playerInputActions.GamePlay.Jump.IsPressed();
+
     public  float AxisX => axes.x;
 
     public  bool Move => AxisX != 0f;

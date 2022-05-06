@@ -26,23 +26,13 @@ public class PlayerState : ScriptableObject, IState
     protected PlayerStateMachine stateMachine;
 
     protected float currentSpeedX;
+    //protected float YSpeed;
 
     //判断当前动画是否播放完
     protected bool IsAnimationFinished => StateDuration >= animator.GetCurrentAnimatorStateInfo(0).length;
 
     protected float StateDuration => Time.time - stateStartTime;
-    //土狼时间
-    //  protected bool IsWolfTiming => FallDuration < WolfTime;
-    //  protected float FallDuration => Time.time - fallingStartTime;
-
-    //  protected float fallingStartTime;
-
-    protected bool IsGroundOut;
-
-    protected void GroundOut(bool IsGroundOut){
-        this.IsGroundOut = IsGroundOut;
-
-    }
+   
 
     //初始化animator,input,stateMachine
     public void Initialize(Animator animator, PlayerInput input,PlayerController player, PlayerStateMachine stateMachine){
@@ -73,7 +63,7 @@ public class PlayerState : ScriptableObject, IState
 
     public virtual void Exit()
     {
-        
+                
     }
 
     public virtual void LogicUpdate()

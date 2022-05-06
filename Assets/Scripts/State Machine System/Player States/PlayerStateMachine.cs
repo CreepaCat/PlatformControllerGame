@@ -8,7 +8,7 @@ public class PlayerStateMachine : StateMachine
     // public PlayerState_Idle idleState;
     // public PlayerState_Run runState;
 
-    //玩家状态数组
+    //玩家状态数组,编辑器拖拽赋值
     [SerializeField] PlayerState[] states;
     Animator animator;
     PlayerInput input;
@@ -23,7 +23,6 @@ public class PlayerStateMachine : StateMachine
         //在使用，每个状态都必须初始化
         // idleState.Initialize(animator,this);
         // runState.Initialize(animator, this);
-        
         stateTable = new Dictionary<System.Type, IState>();//字典使用前需new对象
         foreach (PlayerState state in states)
         {

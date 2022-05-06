@@ -12,8 +12,10 @@ public class PlayerState_Fall : PlayerState
       bool IsWolfTiming => FallDuration < WolfTime;
       float FallDuration => Time.time - fallingStartTime; 
 
-    [SerializeField] float airSpeed = 7f;
-    [SerializeField] float airDeceleration = 5f;
+    [SerializeField] float airSpeed = 3f;
+    [SerializeField] float airDeceleration = 50f;
+
+    [SerializeField] float FallMultiplier = 2.5f;
 
      protected float fallingStartTime;
     public override void Enter()
@@ -25,22 +27,31 @@ public class PlayerState_Fall : PlayerState
 
     public override void LogicUpdate()
     {
-        if(player.IsGrounded){
-            stateMachine.SwitchState(typeof(PlayerState_Land));
+        if(player.IsGrounded && player.IsWalled & input.Move){
+            //stateMachine.SwitchState(typeof(PlayerState_Land));
+
         }
+
+        if(player.IsGrounded){
+           // if(!player.IsWalled)
+             stateMachine.SwitchState(typeof(PlayerState_Land));
+
+        }
+        //if(player.IsWalled)
 
         if(player.IsAirJump){
             stateMachine.SwitchState(typeof(PlayerState_JumpUp));
 
         }
-         Debug.Log("土狼时间：" + IsWolfTiming + ", FallDuration" + FallDuration + ",base.IsGroundOut：" + base.IsGroundOut);
+         //Debug.Log("土狼时间：" + IsWolfTiming + ", FallDuration" + FallDuration + ",base.IsGroundOut：" + base.IsGroundOut);
          //Debug.Log("base.IsGroundOut：" + base.IsGroundOut);
          //FallDuration = Time.time - fallingStartTime;
+
         if(IsWolfTiming){
             //base.GroundOut(false);
             
-            if(input.Move){
-                 currentSpeedX = Mathf.MoveTowards(airSpeed, 0, airDeceleration * Time.deltaTime);
+             if(input.Move ){
+                 currentSpeedX = Mathf.MoveTowards(airSpeed, 0, airDeceleration * Time.deltaTime );
 
             }
             if(input.Jump && (player.JumpCount == player.JumpTimes)){
@@ -53,7 +64,9 @@ public class PlayerState_Fall : PlayerState
 
     public override void PhysicUpdate()
     {
-        if(IsWolfTiming)
-         player.Move(currentSpeedX);
+          if(IsWolfTiming && !player.IsWalled)
+          player.Move(currentSpeedX);
+         //if(player.YSpeed > 0)
+         player.YAxisSpeed(FallMultiplier,Time.fixedDeltaTime);
     }
 }

@@ -16,3 +16,4 @@ MonoBehaviour:
   transitionDuration: 0.1
   runSpeed: 5
   acceleration: 15
+  WolfTime: 0.1

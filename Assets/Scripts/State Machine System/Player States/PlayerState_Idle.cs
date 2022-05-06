@@ -27,19 +27,33 @@ public class PlayerState_Idle : PlayerState
         // if(Keyboard.current.aKey.isPressed || Keyboard.current.dKey.isPressed){
         //       stateMachine.SwitchState(typeof(PlayerState_Run));
         // }
+
+        if(!player.IsGrounded){
+            stateMachine.SwitchState(typeof(PlayerState_Fall));
+        }
         if(input.Move){
             stateMachine.SwitchState(typeof(PlayerState_Run));
         }
         if(input.Jump ){
             stateMachine.SwitchState(typeof(PlayerState_JumpUp));
         }
+
+        // if(input.JumpHold){
+        //     stateMachine.SwitchState(typeof(PlayerState_JumpHold));
+        // }
+        
         currentSpeedX = Mathf.MoveTowards(currentSpeedX, 0 , deceleration * Time.deltaTime);
+         if(Mathf.Abs(currentSpeedX) <= 0.1f){
+            currentSpeedX = 0;
+         }
       
     }
     public override void PhysicUpdate()
     {
         //减速时玩家没有按方向键，不能简单地用Move方法来停止
          player.SetVelocityX(currentSpeedX * player.transform.localScale.x);
+         //player.SetVelocityY(0);
+        
     }
 
 }
