@@ -31,4 +31,11 @@ public class PlayerInput : MonoBehaviour
        //由于此项目不用鼠标左键，所以先锁定
        Cursor.lockState = CursorLockMode.Locked;
    }
+
+    public void DisableGameplayInputs(){
+       //启用输入系统
+       playerInputActions.GamePlay.Disable();
+       //由于此项目不用鼠标左键，所以先锁定
+       Cursor.lockState = CursorLockMode.Confined;
+   }
 }

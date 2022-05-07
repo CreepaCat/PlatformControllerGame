@@ -37,22 +37,35 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\State Machine System\Player States\PlayerState_Run.cs" />
+     <Compile Include="Assets\Scripts\Others\TipsCube.cs" />
      <Compile Include="Assets\Scripts\State Machine System\Base\IState.cs" />
+     <Compile Include="Assets\Scripts\Frames\UIFrame\Panel\Base\UIMethod.cs" />
+     <Compile Include="Assets\Scripts\Frames\UIFrame\Panel\Base\BasePanel.cs" />
+     <Compile Include="Assets\Scripts\Frames\UIFrame\Panel\Base\UIType.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\State Machine System\Player States\PlayerState_Fall.cs" />
      <Compile Include="Assets\Scripts\State Machine System\Base\StateMachine.cs" />
+     <Compile Include="Assets\Scripts\Frames\SceneFrame\Scenes\Start_Scene.cs" />
+     <Compile Include="Assets\Scripts\Frames\UIFrame\Panel\Base\GameRoot.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\PlayerGroundDetector.cs" />
+     <Compile Include="Assets\Scripts\Frames\SceneFrame\Base\BaseScene.cs" />
+     <Compile Include="Assets\Scripts\Frames\SceneFrame\Base\SceneLoader.cs" />
      <Compile Include="Assets\Scripts\Input\PlayerInputActions.cs" />
+     <Compile Include="Assets\Scripts\Frames\SceneFrame\Scenes\Level01_Scene.cs" />
+     <Compile Include="Assets\Scripts\Frames\UIFrame\Panel\Base\UIManager.cs" />
+     <Compile Include="Assets\Scripts\Frames\UIFrame\Panel\Panels\ScorePanel.cs" />
      <Compile Include="Assets\Scripts\State Machine System\Player States\PlayerState.cs" />
+     <Compile Include="Assets\Scripts\Frames\UIFrame\Panel\Panels\StartPanel.cs" />
      <Compile Include="Assets\Scripts\Platform\Pickups.cs" />
      <Compile Include="Assets\Scripts\State Machine System\Player States\PlayerState_Land.cs" />
+     <Compile Include="Assets\Scripts\Platform\Spike.cs" />
      <Compile Include="Assets\Scripts\State Machine System\Player States\PlayerState_Idle.cs" />
      <Compile Include="Assets\Scripts\State Machine System\Player States\PlayerStateMachine.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\PlayerWallDetector.cs" />
+     <Compile Include="Assets\Scripts\Frames\CameraFrame\CameraManager.cs" />
      <Compile Include="Assets\Scripts\State Machine System\Player States\PlayerState_JumpUp.cs" />
+     <Compile Include="Assets\Scripts\Frames\UIFrame\Panel\Panels\MenuPanel.cs" />
      <Compile Include="Assets\Scripts\Input\PlayerInput.cs" />
-     <Compile Include="Assets\Scripts\UIFrame\Panel\Base\UIType.cs" />
-     <Compile Include="Assets\Scripts\UIFrame\Panel\Base\BasePanel.cs" />
      <None Include="Assets\Asset Packages\uchwch\Toon\Shader\Toon_DoubleShadeWithFeather_Mobile_TransClipping_StencilMask.shader" />
      <None Include="Assets\Asset Packages\uchwch\Toon\Shader\Toon_ShadingGradeMap_Mobile_StencilMask.shader" />
      <None Include="Assets\Asset Packages\uchwch\Toon\Shader\Tess\Toon_DoubleShadeWithFeather_Tess_Light_StencilMask.shader" />

@@ -15,6 +15,6 @@ MonoBehaviour:
   stateName: Fall
   transitionDuration: 0.5
   WolfTime: 0.2
-  airSpeed: 3
+  airSpeed: 4
   airDeceleration: 15
-  FallMultiplier: 2
+  FallMultiplier: 2.5

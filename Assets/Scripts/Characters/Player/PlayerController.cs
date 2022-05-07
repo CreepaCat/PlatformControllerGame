@@ -10,6 +10,10 @@ public class PlayerController : MonoBehaviour
 {
     PlayerInput input;
     Rigidbody rigidBody;
+    AudioSource audioSource;
+
+    int playerScore;
+    public int PlayerScore => playerScore;
 
     PlayerGroundDetector groundDetector;
 
@@ -21,14 +25,14 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] public int JumpTimes = 2;
     public int JumpCount;
-    
 
 
-   
+
+
 
     [SerializeField] public bool IsGrounded => groundDetector.IsGrounded;
     [SerializeField] public bool IsWalled => wallDetector.IsWalled;
-    
+
     //Y轴速度小于0并且未着地说明在掉落
     public bool IsFalling => rigidBody.velocity.y < 0f;
 
@@ -36,17 +40,21 @@ public class PlayerController : MonoBehaviour
 
     public bool IsAirJump => input.Jump && JumpCount >= 1;
 
-    //public bool IsWolfTiming => 
+    //public bool IsWolfTiming =>
 
     //public bool IsJump => rigidBody.velocity.y > 0f;
 
    private void Awake() {
        input = GetComponent<PlayerInput>();
        rigidBody = GetComponent<Rigidbody>();
+       audioSource = GetComponent<AudioSource>();
+
        groundDetector = GetComponentInChildren<PlayerGroundDetector>();
        wallDetector = GetComponentInChildren<PlayerWallDetector>();
 
+
        JumpCount = JumpTimes;
+       playerScore = 0;
    }
 
    private void Start() {
@@ -54,6 +62,15 @@ public class PlayerController : MonoBehaviour
        input.EnableGameplayInputs();
    }
 
+  public void EnableCursor(){
+     // input.EnableGameplayInputs();
+     Cursor.lockState = CursorLockMode.Confined;
+  }
+
+   public void DisableCursor(){
+    //input.DisableGameplayInputs();
+    Cursor.lockState = CursorLockMode.Locked;
+  }
    public void Move(float speed){
        //对于2D游戏，镜面翻转比旋转更自然
        if(input.Move){//input.Move为真时已经排除了 input.AxisX为0的情况
@@ -67,9 +84,9 @@ public class PlayerController : MonoBehaviour
 
    public void YAxisSpeed(float sensitive, float deltaTime){
        //Unity重力为-9.81
-       
+
    // rigidBody.velocity += (Vector3.up + new Vector3(rigidBody.velocity.x, 0, 0) )* Physics.gravity.y * (sensitive -1) * deltaTime;
-     rigidBody.velocity += (Vector3.up  )* Physics.gravity.y * (sensitive -1) * deltaTime;
+     rigidBody.velocity += ( Vector3.up  )* Physics.gravity.y * (sensitive -1) * deltaTime;
 
    }
 
@@ -84,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
    }
 
-   
+
 
    public void SetVelocity(Vector3 velocity){
        rigidBody.velocity = velocity;
@@ -92,7 +109,7 @@ public class PlayerController : MonoBehaviour
    }
 
    public void SetVelocityX(float velocityX){
-       rigidBody.velocity = new Vector3(velocityX,rigidBody.velocity.y);
+       rigidBody.velocity = new Vector3(velocityX ,rigidBody.velocity.y);
 
    }
 
@@ -100,6 +117,40 @@ public class PlayerController : MonoBehaviour
        rigidBody.velocity = new Vector3(rigidBody.velocity.x,velocityY);
 
    }
+
+  void OnTriggerEnter(Collider other){
+
+       if(other.gameObject.CompareTag("Pickups")){
+             Pickups item = other.gameObject.GetComponent<Pickups>();
+             item.PlayAudio();
+           // audioSource.PlayOneShot(item.audioClip);
+
+             item.Destroy();
+             AddScore(item.Points);
+
+       }
+
+   }
+
+   #region 计分
+
+
+
+   public void AddScore(int sum){
+
+       playerScore += sum;
+      // Debug.Log("当前得分"+playerScore);
+
+       if(playerScore < 10){
+           GameRoot.Instance.playerScore_txt.text = "0" + playerScore.ToString();
+       }else{
+            GameRoot.Instance.playerScore_txt.text = playerScore.ToString();
+
+       }
+   }
+   #endregion
+
+
 
 
 }

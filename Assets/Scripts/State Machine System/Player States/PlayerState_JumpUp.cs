@@ -11,7 +11,8 @@ public class PlayerState_JumpUp : PlayerState
     [SerializeField] float airSpeed = 7f;
     [SerializeField] float airDeceleration = 5f;
 
-    [SerializeField] float JumpSensitive = 2f;
+    [SerializeField] float LowJump = 2.5f;
+    [SerializeField] float HightJump = 1.5f;
 
     public override void Enter()
     {
@@ -30,10 +31,16 @@ public class PlayerState_JumpUp : PlayerState
         //      stateMachine.SwitchState(typeof(PlayerState_Fall));
 
         //  }
-            
-         
-         
-         //跳跃撞墙调整         
+        if(player.IsWalled && !player.IsGrounded){
+            // stateMachine.SwitchState(typeof(PlayerState_Fall));
+            // player.YAxisSpeed(10 * HightJump , Time.deltaTime);
+            //if(player.YSpeed < 0.5f)
+
+        }
+
+
+
+         //跳跃撞墙调整
          if(player.IsGrounded && (player.YSpeed == 0) && player.IsWalled)
           //if(player.IsGrounded )
              stateMachine.SwitchState(typeof(PlayerState_Land));
@@ -42,15 +49,15 @@ public class PlayerState_JumpUp : PlayerState
             stateMachine.SwitchState(typeof(PlayerState_JumpUp));
 
         }
+
+
          //滞空调整
          if(input.Move ){
             // if(currentSpeedX == 0f ){
             //      stateMachine.SwitchState(typeof(PlayerState_Fall));
 
             // }
-               
-            
-             Debug.Log("是否触地："+ player.IsGrounded);
+            // Debug.Log("是否触地："+ player.IsGrounded);
              currentSpeedX = Mathf.MoveTowards(airSpeed, 0, airDeceleration * Time.deltaTime );
             //currentSpeed = player.YSpeed * 2f;
          }
@@ -60,19 +67,19 @@ public class PlayerState_JumpUp : PlayerState
         /// </summary>
          if(input.JumpHold ){
 
-             player.YAxisSpeed(JumpSensitive,Time.deltaTime);
+             player.YAxisSpeed(HightJump,Time.deltaTime);
 
          }
          if(input.StopJump ){
-              player.YAxisSpeed(1 , Time.deltaTime);
-              
+              player.YAxisSpeed(LowJump , Time.deltaTime);
+
          }
         //  if(input.StopJump){
         //      player.YAxisSpeed(1 , Time.deltaTime);
         //  }
-        
-         
-        
+
+
+
     }
 
     public override void PhysicUpdate(){
@@ -82,5 +89,5 @@ public class PlayerState_JumpUp : PlayerState
 
     }
 
-  
+
 }

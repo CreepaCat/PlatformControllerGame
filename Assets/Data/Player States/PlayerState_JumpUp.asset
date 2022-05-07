@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateName: JumpUp
   transitionDuration: 0.1
-  jumpForce: 5
-  airSpeed: 3
+  jumpForce: 9
+  airSpeed: 4
   airDeceleration: 15
-  JumpSensitive: 0.6
+  LowJump: 150
+  HightJump: 1.5
