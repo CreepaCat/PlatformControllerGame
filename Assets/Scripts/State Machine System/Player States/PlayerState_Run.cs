@@ -14,12 +14,12 @@ public class PlayerState_Run : PlayerState
     //土狼时间
       [SerializeField] public float WolfTime = 0.2f;
       bool IsWolfTiming => FallDuration < WolfTime;
-      float FallDuration => Time.time - fallingStartTime; 
+      float FallDuration => Time.time - fallingStartTime;
       protected float fallingStartTime;
       bool startWolfTime;
       float tick;
-    
-    
+
+
     //状态进入
     public override void Enter()
     {
@@ -34,6 +34,7 @@ public class PlayerState_Run : PlayerState
     //状态改变
     public override void LogicUpdate()
     {
+         base.LogicUpdate();
         //取反
         // if(!(Keyboard.current.aKey.isPressed || Keyboard.current.dKey.isPressed)){
         //     stateMachine.SwitchState(typeof(PlayerState_Idle));
@@ -50,7 +51,7 @@ public class PlayerState_Run : PlayerState
         //不操墙时坠落
         if(!player.IsGrounded && player.IsFalling ){
            // startWolfTime =true;
-           
+
             //Debug.Log("开始掉落 : "+ base.fallingStartTime);
             stateMachine.SwitchState(typeof(PlayerState_Fall));
         }
@@ -59,9 +60,9 @@ public class PlayerState_Run : PlayerState
         currentSpeedX = Mathf.MoveTowards(currentSpeedX,runSpeed, acceleration * Time.deltaTime);
        // player.SetVelocityX()
 
-      
 
-      
+
+
     }
     public override void PhysicUpdate()
     {
@@ -85,5 +86,5 @@ public class PlayerState_Run : PlayerState
 
     // }
 
-  
+
 }

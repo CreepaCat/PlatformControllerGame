@@ -11,9 +11,13 @@ public class PlayerController : MonoBehaviour
     PlayerInput input;
     Rigidbody rigidBody;
     AudioSource audioSource;
+    [SerializeField] AudioClip[] audioClips;
 
     int playerScore;
     public int PlayerScore => playerScore;
+
+    [SerializeField] private bool _isDead;
+    public bool IsDead => _isDead;
 
     PlayerGroundDetector groundDetector;
 
@@ -55,11 +59,13 @@ public class PlayerController : MonoBehaviour
 
        JumpCount = JumpTimes;
        playerScore = 0;
+       _isDead = false;
    }
 
    private void Start() {
        //启用输入系统
        input.EnableGameplayInputs();
+
    }
 
   public void EnableCursor(){
@@ -101,6 +107,16 @@ public class PlayerController : MonoBehaviour
 
    }
 
+   public void PlayAudio(int index){
+
+       if(index < audioClips.Length){
+           audioSource.PlayOneShot(audioClips[index]);
+       }else{
+           Debug.Log($"声音{index}播放错误");
+       }
+
+   }
+
 
 
    public void SetVelocity(Vector3 velocity){
@@ -128,7 +144,16 @@ public class PlayerController : MonoBehaviour
              item.Destroy();
              AddScore(item.Points);
 
+       }else  if(other.gameObject.CompareTag("Spike")){
+            PlayAudio(1);
+            //TODO:角色死亡，游戏结束
+            _isDead = true;
+
+
+
        }
+
+
 
    }
 

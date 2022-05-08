@@ -9,7 +9,7 @@ public class PlayerState : ScriptableObject, IState
 
     //protected int JumpCount = 2;
 
-     
+
 
    // LayerMask layerMask
     int stateHashName;
@@ -32,7 +32,7 @@ public class PlayerState : ScriptableObject, IState
     protected bool IsAnimationFinished => StateDuration >= animator.GetCurrentAnimatorStateInfo(0).length;
 
     protected float StateDuration => Time.time - stateStartTime;
-   
+
 
     //初始化animator,input,stateMachine
     public void Initialize(Animator animator, PlayerInput input,PlayerController player, PlayerStateMachine stateMachine){
@@ -51,28 +51,35 @@ public class PlayerState : ScriptableObject, IState
 
 
 
+
+
     //接口的此种实现最常见
     public virtual void Enter()
     {
         //动画交叉淡化
         animator.CrossFade(stateHashName,transitionDuration);
         stateStartTime = Time.time;
-        
+
 
     }
 
     public virtual void Exit()
     {
-                
+
     }
 
     public virtual void LogicUpdate()
     {
-        
+      //  PlayerDie();
+      if(player.IsDead){
+          stateMachine.SwitchState(typeof(PlayerState_Die));
+      }
+
     }
 
     public virtual void PhysicUpdate()
     {
-        
+
+
     }
 }

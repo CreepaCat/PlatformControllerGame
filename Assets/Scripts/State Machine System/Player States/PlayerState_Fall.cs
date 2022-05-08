@@ -10,7 +10,7 @@ public class PlayerState_Fall : PlayerState
     // [SerializeField] float airAcceleration = 5f;
       [SerializeField] public float WolfTime = 0.2f;
       bool IsWolfTiming => FallDuration < WolfTime;
-      float FallDuration => Time.time - fallingStartTime; 
+      float FallDuration => Time.time - fallingStartTime;
 
     [SerializeField] float airSpeed = 3f;
     [SerializeField] float airDeceleration = 50f;
@@ -22,11 +22,14 @@ public class PlayerState_Fall : PlayerState
     {
         base.Enter();
         fallingStartTime = Time.time;
-       
+
     }
 
     public override void LogicUpdate()
     {
+
+        base.LogicUpdate();
+
         if(player.IsGrounded && player.IsWalled & input.Move){
             //stateMachine.SwitchState(typeof(PlayerState_Land));
 
@@ -49,7 +52,7 @@ public class PlayerState_Fall : PlayerState
 
         if(IsWolfTiming){
             //base.GroundOut(false);
-            
+
              if(input.Move ){
                  currentSpeedX = Mathf.MoveTowards(airSpeed, 0, airDeceleration * Time.deltaTime );
 
@@ -59,7 +62,7 @@ public class PlayerState_Fall : PlayerState
 
             }
         }
-          
+
     }
 
     public override void PhysicUpdate()

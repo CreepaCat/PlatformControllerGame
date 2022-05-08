@@ -3,12 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class GameRoot : MonoBehaviour
 {
+
+  //  public CinemachineVirtualCamera virtualCamera;
+
      private static GameRoot _instance;
 
    //  public GameObject Player_GameObject;
+   // public GameObject _ActiveCamera;
+     public GameObject _ActiveVirtualCamera;
+    public int cinemacine_fov;
       public PlayerController player;
       PlayerStateMachine playerStateMachine;
 
@@ -31,6 +38,7 @@ public class GameRoot : MonoBehaviour
 
     public Canvas canvas;
 
+
     private UIManager UIManager;
 
     public UIManager UIManager_Root => UIManager;
@@ -39,7 +47,10 @@ public class GameRoot : MonoBehaviour
 
     public SceneLoader SceneLoader_Root => SceneLoader;
 
-    
+    private CameraManager CameraManager;
+    public CameraManager CameraManager_Root => CameraManager;
+
+
 
     void Awake() {
 
@@ -52,22 +63,25 @@ public class GameRoot : MonoBehaviour
             Destroy(this.gameObject);
 
         }
-      
+
 
       //  canvas = UIMethod.Instance.FindCanvas(canvas.name);
         UIManager = new UIManager();
         SceneLoader = new SceneLoader();
+        CameraManager = new CameraManager();
+
+
 
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         playerStateMachine =  GameObject.Find("Player").GetComponent<PlayerStateMachine>();
 
         playerScore_txt = UIMethod.Instance.GetOrAddComponent<Text>(playerScore_obj);
-       
+
 
 
         playerInput = new PlayerInput();
-       
-        
+
+
     }
 
     private void Start() {
@@ -84,8 +98,13 @@ public class GameRoot : MonoBehaviour
         EnablePlayerController(false);
 
         UIManager_Root._canvas = UIMethod.Instance.FindCanvas(canvas.name);
+        _ActiveVirtualCamera = UIMethod.Instance.FindGameObject("Virtual Camera Player Follow","VirtualCamera");
 
-     
+        GameRoot.Instance.CameraManager_Root.SetCamera(_ActiveVirtualCamera,cinemacine_fov);
+
+
+
+
         GameRoot.Instance.UIManager_Root.Push(new StartPanel());
 
         //第一个场景手动加入字典
@@ -94,8 +113,10 @@ public class GameRoot : MonoBehaviour
 
         playerScore_obj.SetActive(false);
         // player.AddScore(0);
-      
+
     }
+
+
 
      public void EnablePlayerController(bool flag){
          if(!flag){

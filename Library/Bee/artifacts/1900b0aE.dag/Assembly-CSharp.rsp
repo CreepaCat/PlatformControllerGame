@@ -368,6 +368,7 @@
 "Assets/Scripts/State Machine System/Base/StateMachine.cs"
 "Assets/Scripts/State Machine System/Player States/PlayerState.cs"
 "Assets/Scripts/State Machine System/Player States/PlayerStateMachine.cs"
+"Assets/Scripts/State Machine System/Player States/PlayerState_Die.cs"
 "Assets/Scripts/State Machine System/Player States/PlayerState_Fall.cs"
 "Assets/Scripts/State Machine System/Player States/PlayerState_Idle.cs"
 "Assets/Scripts/State Machine System/Player States/PlayerState_JumpUp.cs"

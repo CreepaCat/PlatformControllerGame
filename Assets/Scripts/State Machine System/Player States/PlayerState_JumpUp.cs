@@ -11,18 +11,21 @@ public class PlayerState_JumpUp : PlayerState
     [SerializeField] float airSpeed = 7f;
     [SerializeField] float airDeceleration = 5f;
 
-    [SerializeField] float LowJump = 2.5f;
+    [SerializeField] float LowJump = 150f;
     [SerializeField] float HightJump = 1.5f;
 
     public override void Enter()
     {
         base.Enter();
         player.SetVelocityY(jumpForce);
+        //播放音效
+        GameRoot.Instance.player.PlayAudio(0);
         player.JumpCount --;
     }
 
     public override void LogicUpdate()
     {
+         base.LogicUpdate();
          if(player.IsFalling){
              stateMachine.SwitchState(typeof(PlayerState_Fall));
          }

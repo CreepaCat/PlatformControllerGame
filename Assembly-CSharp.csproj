@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\Frames\SceneFrame\Scenes\Level01_Scene.cs" />
      <Compile Include="Assets\Scripts\Frames\UIFrame\Panel\Base\UIManager.cs" />
      <Compile Include="Assets\Scripts\Frames\UIFrame\Panel\Panels\ScorePanel.cs" />
+     <Compile Include="Assets\Scripts\State Machine System\Player States\PlayerState_Die.cs" />
      <Compile Include="Assets\Scripts\State Machine System\Player States\PlayerState.cs" />
      <Compile Include="Assets\Scripts\Frames\UIFrame\Panel\Panels\StartPanel.cs" />
      <Compile Include="Assets\Scripts\Platform\Pickups.cs" />

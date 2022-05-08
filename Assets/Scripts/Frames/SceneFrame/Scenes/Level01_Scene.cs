@@ -11,10 +11,12 @@ public class Level01_Scene : BaseScene
        // throw new System.NotImplementedException();
       GameObject.Find("Player").GetComponent<PlayerController>().DisableCursor();
      // GameManager.Instance.player.DisableCursor();
-      GameRoot.Instance.EnablePlayerController(true);
+      GameRoot.Instance.EnablePlayerController(true);//启用玩家输入
       GameRoot.Instance.playerScore_obj.SetActive(true);
-      GameRoot.Instance.player.AddScore(0);
 
+      GameRoot.Instance.player.AddScore(0);//初始化玩家分数
+
+      GameRoot.Instance.CameraManager_Root.EnterGameAnima();//相机动画
     //  GameManager.Instance.playerScore_txt = GameObject.
     }
 

@@ -15,7 +15,7 @@ MonoBehaviour:
   stateName: JumpUp
   transitionDuration: 0.1
   jumpForce: 9
-  airSpeed: 4
+  airSpeed: 5
   airDeceleration: 15
-  LowJump: 150
+  LowJump: 80
   HightJump: 1.5
