@@ -47,6 +47,7 @@
      <Compile Include="Assets\Scripts\State Machine System\Base\StateMachine.cs" />
      <Compile Include="Assets\Scripts\Frames\SceneFrame\Scenes\Start_Scene.cs" />
      <Compile Include="Assets\Scripts\Frames\UIFrame\Panel\Base\GameRoot.cs" />
+     <Compile Include="Assets\Scripts\Frames\SceneFrame\Scenes\Cover_Scene.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\PlayerGroundDetector.cs" />
      <Compile Include="Assets\Scripts\Frames\SceneFrame\Base\BaseScene.cs" />
      <Compile Include="Assets\Scripts\Frames\SceneFrame\Base\SceneLoader.cs" />
@@ -58,6 +59,7 @@
      <Compile Include="Assets\Scripts\State Machine System\Player States\PlayerState.cs" />
      <Compile Include="Assets\Scripts\Frames\UIFrame\Panel\Panels\StartPanel.cs" />
      <Compile Include="Assets\Scripts\Platform\Pickups.cs" />
+     <Compile Include="Assets\Scripts\Frames\UIFrame\Panel\Panels\DefeatScreen.cs" />
      <Compile Include="Assets\Scripts\State Machine System\Player States\PlayerState_Land.cs" />
      <Compile Include="Assets\Scripts\Platform\Spike.cs" />
      <Compile Include="Assets\Scripts\State Machine System\Player States\PlayerState_Idle.cs" />

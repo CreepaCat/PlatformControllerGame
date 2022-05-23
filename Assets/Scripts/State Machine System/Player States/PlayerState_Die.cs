@@ -7,10 +7,13 @@ using UnityEngine;
 public class PlayerState_Die : PlayerState
 {
 
+    bool isOvered;
+
      [SerializeField] float deceleration = 20f;
     public override void Enter()
     {
         base.Enter();
+        isOvered = false;
 
         currentSpeedX = player.MoveSpeed;
       //  stateMachine.SwitchState(typeof(PlayerState_Die));
@@ -25,9 +28,12 @@ public class PlayerState_Die : PlayerState
 
 
        // base.LogicUpdate();
-       if(IsAnimationFinished){
+       if(IsAnimationFinished && !isOvered){
           //  stateMachine.SwitchState(typeof(PlayerState_Idle));
            //TODO:调用游戏结束方法
+           GameOver();
+           isOvered = true;
+
        }
 
     }
@@ -36,5 +42,10 @@ public class PlayerState_Die : PlayerState
     {
         base.PhysicUpdate();
         player.SetVelocityX(currentSpeedX);
+    }
+
+    void GameOver(){
+        GameRoot.Instance.UIManager_Root.Push(new DefeatScreen());
+       GameRoot.Instance.player.EnableCursor();
     }
 }

@@ -9,11 +9,10 @@ public class Level01_Scene : BaseScene
     public override void EnterScene()
     {
        // throw new System.NotImplementedException();
-      GameObject.Find("Player").GetComponent<PlayerController>().DisableCursor();
+      GameRoot.Instance.player.DisableCursor();
      // GameManager.Instance.player.DisableCursor();
       GameRoot.Instance.EnablePlayerController(true);//启用玩家输入
       GameRoot.Instance.playerScore_obj.SetActive(true);
-
       GameRoot.Instance.player.AddScore(0);//初始化玩家分数
 
       GameRoot.Instance.CameraManager_Root.EnterGameAnima();//相机动画

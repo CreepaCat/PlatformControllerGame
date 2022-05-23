@@ -18,6 +18,16 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private bool _isDead;
     public bool IsDead => _isDead;
+    [SerializeField] public bool IsInit;
+
+    //  bool SetInit{
+    //      set{
+    //          if(IsInit){
+    //            Init();
+    //            IsInit = false;
+    //          }
+    //      }
+    //  }
 
     PlayerGroundDetector groundDetector;
 
@@ -53,6 +63,8 @@ public class PlayerController : MonoBehaviour
        rigidBody = GetComponent<Rigidbody>();
        audioSource = GetComponent<AudioSource>();
 
+       rigidBody.velocity = Vector3.zero;
+
        groundDetector = GetComponentInChildren<PlayerGroundDetector>();
        wallDetector = GetComponentInChildren<PlayerWallDetector>();
 
@@ -60,17 +72,46 @@ public class PlayerController : MonoBehaviour
        JumpCount = JumpTimes;
        playerScore = 0;
        _isDead = false;
+       IsInit = false;
+   }
+
+   public void Init(){
+       input = GetComponent<PlayerInput>();
+       rigidBody = GetComponent<Rigidbody>();
+       audioSource = GetComponent<AudioSource>();
+
+       groundDetector = GetComponentInChildren<PlayerGroundDetector>();
+       wallDetector = GetComponentInChildren<PlayerWallDetector>();
+
+       transform.position = Vector3.zero;
+
+
+       JumpCount = JumpTimes;
+       playerScore = 0;
+       _isDead = false;
+       IsInit = false;
    }
 
    private void Start() {
+        // DontDestroyOnLoad(this.gameObject);
        //启用输入系统
        input.EnableGameplayInputs();
 
    }
+     void OnEnable(){
+         // DisableCursor();
+         input = GetComponent<PlayerInput>();
+       rigidBody = GetComponent<Rigidbody>();
+       audioSource = GetComponent<AudioSource>();
 
+       groundDetector = GetComponentInChildren<PlayerGroundDetector>();
+       wallDetector = GetComponentInChildren<PlayerWallDetector>();
+
+
+    }
   public void EnableCursor(){
-     // input.EnableGameplayInputs();
-     Cursor.lockState = CursorLockMode.Confined;
+     //input.DisableGameplayInputs();
+     Cursor.lockState = CursorLockMode.None;
   }
 
    public void DisableCursor(){

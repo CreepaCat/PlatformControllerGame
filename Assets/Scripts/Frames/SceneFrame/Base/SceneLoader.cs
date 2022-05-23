@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader 
+public class SceneLoader
 {
     private static SceneLoader _instance;
 
@@ -15,7 +15,7 @@ public class SceneLoader
                 return _instance;
             }
                 return _instance;
-            
+
         }
     }
 
@@ -39,16 +39,18 @@ public class SceneLoader
 
        #region load
 
-    
+
        SceneManager.LoadScene(scene_name);
        dict_scenes[scene_name].EnterScene();
+
+       baseScene.SetActiveScene(baseScene);
 
 
        #endregion
 
 
 
-        baseScene.EnterScene();
+       // baseScene.EnterScene();
 
     }
 }

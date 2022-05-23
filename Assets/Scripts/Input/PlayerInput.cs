@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
-    PlayerInputActions playerInputActions;
+    public PlayerInputActions playerInputActions;
 
     //按键状态赋值
     public Vector2 axes => playerInputActions.GamePlay.Axes.ReadValue<Vector2>();
@@ -20,7 +20,7 @@ public class PlayerInput : MonoBehaviour
     public  bool Move => AxisX != 0f;
 
     void Awake(){
-       
+
         playerInputActions = new PlayerInputActions();
     }
 
@@ -29,7 +29,7 @@ public class PlayerInput : MonoBehaviour
        //启用输入系统
        playerInputActions.GamePlay.Enable();
        //由于此项目不用鼠标左键，所以先锁定
-       Cursor.lockState = CursorLockMode.Locked;
+       //Cursor.lockState = CursorLockMode.Locked;
    }
 
     public void DisableGameplayInputs(){

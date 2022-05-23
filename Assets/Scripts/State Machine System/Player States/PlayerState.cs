@@ -48,11 +48,6 @@ public class PlayerState : ScriptableObject, IState
 
     }
 
-
-
-
-
-
     //接口的此种实现最常见
     public virtual void Enter()
     {

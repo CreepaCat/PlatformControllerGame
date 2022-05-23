@@ -16,6 +16,7 @@ public class PlayerState_Idle : PlayerState
         base.Enter();
         //currentSpeed = player.rigidBody.velocity.x;
         currentSpeedX = player.MoveSpeed;
+      //  player.IsInit = false;
 
 
     }

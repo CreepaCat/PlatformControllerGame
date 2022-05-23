@@ -12,7 +12,7 @@ public class StartPanel : BasePanel
 
   //  private List<Button> listener_btns;
 
-    PlayerInput playerInput; 
+    PlayerInput playerInput;
 
    public StartPanel():base(uiType){
        //listener_btns = new List<Button>();
@@ -22,15 +22,17 @@ public class StartPanel : BasePanel
    void OpenMenu(){
        GameRoot.Instance.UIManager_Root.Pop();
        GameRoot.Instance.UIManager_Root.Push(new MenuPanel());
+
+
    }
-   
-  
+
+
 
   public override void OnStart()
     {    //动态绑定按钮事件
          UIMethod.Instance.GetOrAddComponentInChildren<Button>(_ActiveObj,"Start_Button").onClick.AddListener(OpenMenu);
          playerInput = new PlayerInput();
-         
+
         base.OnStart();
     }
       public override void OnEnable()
@@ -41,7 +43,7 @@ public class StartPanel : BasePanel
     {
         base.OnDisable();
     }
-   
+
     public override void OnDestroy()
     {
         UIMethod.Instance.GetOrAddComponentInChildren<Button>(_ActiveObj,"Start_Button").onClick.RemoveAllListeners();
@@ -49,5 +51,5 @@ public class StartPanel : BasePanel
     }
 
 
- 
+
 }
